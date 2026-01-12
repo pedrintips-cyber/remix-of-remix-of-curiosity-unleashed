@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    /* Telegram-inspired colors */
+    --background: 210 20% 10%;
+    --foreground: 210 20% 98%;
+
+    --card: 210 20% 14%;
+    --card-foreground: 210 20% 98%;
+
+    --popover: 210 20% 14%;
+    --popover-foreground: 210 20% 98%;
+
+    --primary: 200 100% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 20% 18%;
+    --secondary-foreground: 210 20% 95%;
+
+    --muted: 210 15% 20%;
+    --muted-foreground: 210 10% 55%;
+
+    --accent: 200 90% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 210 15% 22%;
+    --input: 210 15% 22%;
+    --ring: 200 100% 45%;
+
+    --radius: 0.75rem;
+
+    /* Telegram design tokens */
+    --telegram-blue: 200 100% 45%;
+    --telegram-light-blue: 200 90% 55%;
+    --shadow-soft: 0 4px 20px hsl(0 0% 0% / 0.3);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+  }
+}
+
+@layer components {
+  .telegram-button {
+    @apply font-bold tracking-wide text-lg;
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--telegram-light-blue)));
+    color: hsl(var(--primary-foreground));
+    border-radius: 9999px;
+    transition: all 0.3s ease;
+    box-shadow: 
+      0 0 20px hsl(var(--primary) / 0.5),
+      0 0 40px hsl(var(--primary) / 0.3),
+      0 4px 15px hsl(0 0% 0% / 0.3);
+    animation: pulse-glow 2s ease-in-out infinite;
+    border: 2px solid hsl(var(--telegram-light-blue) / 0.5);
+  }
+
+  .telegram-button:hover {
+    background: linear-gradient(135deg, hsl(var(--telegram-light-blue)), hsl(var(--primary)));
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 
+      0 0 30px hsl(var(--primary) / 0.7),
+      0 0 60px hsl(var(--primary) / 0.4),
+      0 6px 20px hsl(0 0% 0% / 0.4);
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 
+        0 0 20px hsl(var(--primary) / 0.5),
+        0 0 40px hsl(var(--primary) / 0.3),
+        0 4px 15px hsl(0 0% 0% / 0.3);
+    }
+    50% {
+      box-shadow: 
+        0 0 30px hsl(var(--primary) / 0.7),
+        0 0 60px hsl(var(--primary) / 0.5),
+        0 4px 20px hsl(0 0% 0% / 0.4);
+    }
+  }
+
+  .photo-card {
+    @apply relative overflow-hidden rounded-lg;
+    box-shadow: var(--shadow-soft);
+    transition: all 0.3s ease;
+  }
+
+  .photo-card:hover {
+    transform: scale(1.02);
+  }
+
+  .video-container {
+    @apply relative rounded-xl overflow-hidden;
+    box-shadow: var(--shadow-soft);
+    border: 2px solid hsl(var(--primary) / 0.5);
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fade-in 0.6s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.6s ease-out forwards;
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
